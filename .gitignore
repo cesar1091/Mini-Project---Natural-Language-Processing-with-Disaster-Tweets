@@ -172,3 +172,28 @@ cython_debug/
 
 # PyPI configuration file
 .pypirc
+
+# database files
+*.db
+*.sqlite3   
+
+# datasets
+/data
+*.csv
+*.json  
+*.parquet
+*.xlsx
+*.xls
+*.hdf5
+*.h5
+*.feather
+*.pkl
+*.pickle
+*.dta
+*.sav
+*.sas7bdat
+*.sav
+*.rds
+*.rdata
+*.rda
+*.mat
