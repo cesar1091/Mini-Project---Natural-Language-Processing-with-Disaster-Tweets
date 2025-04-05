@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tweet Classifier</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>Disaster Tweet Classifier</h1>
+        <form id="tweetForm" method="POST" action="/predict">
+            <textarea name="tweet" id="tweet" placeholder="Enter your tweet here..." required></textarea>
+            <button type="submit">Classify</button>
+        </form>
+        <div id="result" class="result"></div>
+    </div>
+
+    <script>
+        const form = document.getElementById('tweetForm');
+        const resultDiv = document.getElementById('result');
+
+        form.addEventListener('submit', async (event) => {
+            event.preventDefault();
+            const formData = new FormData(form);
+            const response = await fetch('/predict', {
+                method: 'POST',
+                body: formData
+            });
+            const data = await response.json();
+            resultDiv.innerHTML = `
+                <p><strong>Tweet:</strong> ${data.tweet}</p>
+                <p><strong>Prediction:</strong> ${data.prediction}</p>
+                <p><strong>Confidence:</strong> ${data.confidence}</p>
+            `;
+        });
+    </script>
+</body>
+</html>
